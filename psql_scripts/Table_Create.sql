@@ -1,4 +1,4 @@
-CREATE TABLE demotb1 (
+CREATE TABLE demotb2 (
     EmployeeID INT PRIMARY KEY,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
