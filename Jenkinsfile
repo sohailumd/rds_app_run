@@ -34,7 +34,7 @@ pipeline {
         stage('deploy-app') {
             steps {
                 script {
-                sh ' pwd; ls -l; cd demo-app; ls -l; chmod +x gradlew'
+                sh ' pwd; ls -l; cd demo-app; ls -l; chmod +x gradlew; cat gradlew'
                 echo 'Running build automation'
                 sh 'sudo ./gradlew build --no-daemon'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
