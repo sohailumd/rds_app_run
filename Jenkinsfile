@@ -38,7 +38,7 @@ pipeline {
                               doGenerateSubmoduleConfigurations: false, 
                               extensions: [], 
                               userRemoteConfigs: [[url: 'git@github.com:sohailumd/rds_app_run.git']]])
-                sh ' pwd; ls -l; cd demo-app; ls -l; chmod +x gradlew'
+                sh ' pwd; cd demo-app; ls -l; chmod +x gradlew; ls -l'
                 echo 'Running build automation'
                 sh 'sudo ./gradlew build --no-daemon'
                 archiveArtifacts artifacts: 'dist/trainSchedule.zip'
