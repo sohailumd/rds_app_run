@@ -18,14 +18,7 @@ pipeline {
                     which git
                     whoami
                     ls -l
-                    cd psql_scripts
-                    ls -l
                     '''
-                    checkout([$class: 'GitSCM', 
-                              branches: [[name: 'main']], 
-                              doGenerateSubmoduleConfigurations: false, 
-                              extensions: [], 
-                              userRemoteConfigs: [[url: 'git@github.com:sohailumd/rds_app_run.git']]])
 					def sqlQuery1 = readFile('psql_scripts/Table_Create.sql')
 					def sqlQuery2 = readFile('psql_scripts/Table_Insert.sql')
                     sh """
