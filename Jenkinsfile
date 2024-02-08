@@ -20,7 +20,7 @@ pipeline {
                     ls -l
                     '''
 					def sqlQuery1 = readFile('psql_scripts/Table_Create.sql')
-					def sqlQuery2 = readFile('psql_scripts/Table_Delete.sql')
+					def sqlQuery2 = readFile('psql_scripts/Table_Insert.sql')
                     sh """
                     pwd
                     ls -l
