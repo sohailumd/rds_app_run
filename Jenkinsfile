@@ -20,7 +20,7 @@ pipeline {
                     ls -l
                     '''
 					def sqlQuery1 = readFile('psql_scripts/Table_Create.sql')
-					def sqlQuery2 = readFile('psql_scripts/Table_Insert.sql')
+					def sqlQuery2 = readFile('psql_scripts/Table_Delete.sql')
                     sh """
                     pwd
                     ls -l
@@ -31,22 +31,13 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
-            steps {
-                    checkout([$class: 'GitSCM', 
-                              branches: [[name: 'main']], 
-                              doGenerateSubmoduleConfigurations: false, 
-                              extensions: [], 
-                              userRemoteConfigs: [[url: 'git@github.com:sohailumd/rds_app_run.git']]])
-                sh ' pwd; cd demo-app; ls -l; chmod +x gradlew'
-                echo 'Running build automation'
-                sh 'sudo ./gradlew build --no-daemon'
-                archiveArtifacts artifacts: 'dist/trainSchedule.zip'
-            }
-        }
         stage('deploy-app') {
             steps {
                 script {
+                sh ' pwd; ls -l; cd demo-app; ls -l; chmod +x gradlew'
+                echo 'Running build automation'
+                sh 'sudo ./gradlew build --no-daemon'
+                archiveArtifacts artifacts: 'dist/trainSchedule.zip'
                     sshPublisher(
                         failOnError: true,
                         continueOnError: false,
