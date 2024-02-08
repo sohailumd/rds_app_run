@@ -1,1 +1,1 @@
-DROP TABLE demotable;
+DROP TABLE demotb1;
