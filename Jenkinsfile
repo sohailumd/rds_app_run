@@ -34,10 +34,10 @@ pipeline {
         stage('deploy-app') {
             steps {
                 script {
-                sh ' pwd; ls -l; cd demo-app; ls -l; chmod +x gradlew; cat gradlew; ls -l; sudo ./gradlew build --no-daemon'
+                sh ' pwd; ls -l; cd demo-app; chmod +x gradlew; ls -l; sudo ./gradlew build --no-daemon'
                 echo 'Running build automation'
 
-                archiveArtifacts artifacts: 'dist/trainSchedule.zip'
+                archiveArtifacts artifacts: 'demo-app/dist/trainSchedule.zip'
                     sshPublisher(
                         failOnError: true,
                         continueOnError: false,
@@ -46,8 +46,8 @@ pipeline {
                                 configName: 'demo-app-server',
                                 transfers: [
                                     sshTransfer(
-                                        sourceFiles: 'dist/trainSchedule.zip',
-                                        removePrefix: 'dist/',
+                                        sourceFiles: 'demo-app/dist/trainSchedule.zip',
+                                        removePrefix: 'demo-app/dist/',
                                         remoteDirectory: '/tmp',
                                         execCommand: 'rm -rf /home/demouser/demo-app/*; unzip /tmp/trainSchedule.zip -d /home/demouser/demo-app/ '
                                     )
