@@ -1,1 +1,1 @@
-DROP TABLE demotb1;
+DROP TABLE Employee;

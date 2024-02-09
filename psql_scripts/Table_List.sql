@@ -1,1 +1,1 @@
-SELECT * FROM demotable;
+SELECT * FROM Employee;

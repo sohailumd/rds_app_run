@@ -1,1 +1,1 @@
-SELECT EXISTS (SELECT * FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'demotable') AS table_exists;
+SELECT EXISTS (SELECT * FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'Employee') AS table_exists;
